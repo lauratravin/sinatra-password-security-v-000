@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
 
 	post "/signup" do
 		binding.pry
-		user = User.new(params)
+		user = User.new(username: => params[:username],password: => params[:password])
 	end
 
 	get "/login" do
