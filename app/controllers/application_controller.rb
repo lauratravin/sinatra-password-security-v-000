@@ -31,10 +31,11 @@ class ApplicationController < Sinatra::Base
 	end
 
 	post "/login" do
-
 		user = User.find_by(username: params[:username])  #User.find_by(:username => params[:username])
-
-		if user
+#n the code below, we see how we can ensure that we have a User AND that that User is authenticated.
+#If the user authenticates, we'll set the session[:user_id] and redirect to the /success route
+		if user && user.authenticate(params[:password])
+			session[:user_id]= user.id
 			redirect "/success"
 		else
 			redirect "/failure"
