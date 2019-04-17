@@ -31,6 +31,7 @@ class ApplicationController < Sinatra::Base
 	end
 
 	post "/login" do
+		
 		user = User.find_by(username: params[:username])  #User.find_by(:username => params[:username])
 
 		if user
@@ -38,7 +39,7 @@ class ApplicationController < Sinatra::Base
 		else
 			redirec "/failure"
 		end
-		
+
 	end
 
 	get "/success" do
